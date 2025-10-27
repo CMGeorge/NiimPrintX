@@ -112,7 +112,7 @@ class TextOperation:
 
     def update_selected_text(self):
         """Update the currently selected text item with the current UI values."""
-        if self.config.current_selected:
+        if self.config.current_selected and self.config.current_selected in self.config.text_items:
             self.update_canvas_text(self.config.current_selected)
         else:
             messagebox.showwarning("Warning", "Please select a text item to update.")
