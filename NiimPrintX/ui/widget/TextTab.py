@@ -97,9 +97,12 @@ class TextTab:
                                     command=self.text_op.add_text_to_canvas)
         # add_button.grid(row=3, column=1, rowspan=4, padx=5)
 
+        self.update_button = tk.Button(button_frame, text="Update", highlightbackground=default_bg,
+                                       command=self.text_op.update_selected_text)
         self.delete_button = tk.Button(button_frame, text="Delete", highlightbackground=default_bg,
                                        command=self.text_op.delete_text)
         self.add_button.pack(side=tk.LEFT)
+        self.update_button.pack(side=tk.LEFT)
         self.delete_button.pack(side=tk.LEFT)
         button_frame.grid(row=4, column=1, sticky="w")
 
