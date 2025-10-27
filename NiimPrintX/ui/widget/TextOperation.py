@@ -76,7 +76,6 @@ class TextOperation:
             self.config.canvas.delete(self.config.text_items[self.config.current_selected]['handle'])
             del self.config.text_items[self.config.current_selected]
             self.config.current_selected = None
-            self.parent.add_button.config(text="Add", command=self.add_text_to_canvas)
 
     def select_text(self, event, text_id):
         self.deselect_text()
@@ -111,7 +110,12 @@ class TextOperation:
         else:
             self.parent.underline_var.set(True)
 
-        self.parent.add_button.config(text="Update", command=lambda t_id=text_id: self.update_canvas_text(t_id))
+    def update_selected_text(self):
+        """Update the currently selected text item with the current UI values."""
+        if self.config.current_selected and self.config.current_selected in self.config.text_items:
+            self.update_canvas_text(self.config.current_selected)
+        else:
+            messagebox.showwarning("Warning", "Please select a text item to update.")
 
     def update_canvas_text(self, text_id):
         text = self.parent.content_entry.get("1.0", "end-1c")
@@ -182,7 +186,6 @@ class TextOperation:
         if self.config.current_selected:
             self.delete_bounding_box(self.config.current_selected)
             self.config.current_selected = None
-            self.parent.add_button.config(text="Add", command=self.add_text_to_canvas)
 
     def delete_bounding_box(self, text_id):
         if 'bbox' in self.config.text_items[text_id]:
